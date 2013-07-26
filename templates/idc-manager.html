@@ -41,10 +41,10 @@
                     <link rel="apple-touch-icon-precomposed" href="static/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="static/ico/favicon.png">
 
-    <link href="http://mottie.github.io/tablesorter/css/theme.default.css" rel="stylesheet">
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
-    
+    <link href="/static/css/tablesorter.theme.default.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script> 
+    <script type="text/javascript" src="/static/js/jquery.tablesorter.min.js"></script>
+    <!--script src="/static/js/shengshi.js"></script--> 
      <link href="/static/datepicker/datepicker.css" rel="stylesheet">
     
     <script>
@@ -59,7 +59,10 @@ $(document).ready(function(){
  /*os_path_edit_save_post_save*/
   $("#add_idc_name_post_save").click(function(){
     var nametext=($("#add_idc_name").val());
-     var datetext=($("#add_idc_date").val());
+     var datestart=($("#add_idc_date_start").val());
+     var dateend=($("#add_idc_date_end").val());
+     /*     var datetext=($("#add_idc_date").val());*/
+     var datetext=datestart+ ","+dateend;
      var detailtext=($("#add_idc_detail").val());
 
      $.post("/add_idc_name/",
@@ -85,9 +88,14 @@ $(document).ready(function(){
      });
    });
 
+
 $(document).ready(function(){
  $("#add_location_post_save").click(function(){
-     var nametext=($("#add_location_name").val());
+     /*var nametext=($("#add_location_name").val());*/
+     var s1=$("add_location_name_s1").find("option:selected").text();
+     var s2=($("add_location_name_s2").text());
+     var s3=($("add_location_name_s3").val());
+     var nametext=s1+','+s2+','+s3;
      var detailtext=($("#add_location_detail").val());
      $.post("/add_location_name/",
     { 
@@ -200,7 +208,15 @@ $(document).ready(function(){
                                 <div class="control-group">
                                    <label class="control-label">使用时间范围</label>
                                    <div class="controls">
-                                       <input id="add_idc_date" type="text" name="ip"  class="span2" placeholder="日期">
+                                            <div class="input-append date" id="dp1" data-date="2013-07-30" data-date-format="yyyy-mm-dd">
+                                                 <input id="add_idc_date_start" type="text"  name="buytime"  class="span2" value="开始日期" readonly>
+                                                 <span class="add-on"><i class="icon-th"></i></span>
+                                            </div>
+                                            <div class="input-append date" id="dp2" data-date="2013-07-30" data-date-format="yyyy-mm-dd">
+                                                 <input id="add_idc_date_end" type="text"  name="buytime"  class="span2" value="结束日期" readonly>
+                                                 <span class="add-on"><i class="icon-th"></i></span>
+                                            </div>
+                                       <!--input id="add_idc_date" type="text" name="ip"  class="span2" placeholder="日期"-->
                                    </div>
                                  </div>
                                   <div class="control-group">
@@ -256,8 +272,36 @@ $(document).ready(function(){
                          <div class="control-group">
                            <label class="control-label">机房位置</label>
                            <div class="controls">
-                              <input id="add_location_name" type="text" name="hostname" class="span2" placeholder="机房位置">
+                              <!--input id="add_location_name" type="text" name="hostname" class="span2" placeholder="机房位置"-->
+                               <select id="add_location_name_s1" class="span2"></select>
+                               <select id="add_location_name_s2" class="span2"></select>
+                               <select id="add_location_name_s3" class="span2"></select>
+                              <script src="/static/js/shengshi.js"></script>
                            </div>
+
+
+<!--script>
+$(document).ready(function(){
+ $("#add_location_post_save").click(function(){
+     /*var nametext=($("#add_location_name").val());*/
+     var s1=$("add_location_name_s1").find("option:selected").text();
+     var s2=($("add_location_name_s2").text());
+     var s3=($("add_location_name_s3").val());
+     var nametext=s1+','+s2+','+s3;
+     var detailtext=($("#add_location_detail").val());
+     $.post("/add_location_name/",
+    { 
+         'locationname': nametext,
+         'locationdetail': detailtext
+    },
+     function(data,status){
+       /*alert("数据:" + data + "\n状态:" + status);*/
+       alert("增加idc记录数据:" + data);
+
+     });
+     });
+     });
+</script-->
                          </div>
                          <div class="control-group">
                             <label class="control-label">备注信息</label>
@@ -362,7 +406,7 @@ $(document).ready(function(){
                        <label class="control-label">购买时间</label>
                        <div class="controls">
                          <!--input type="text"  name="buytime"  class="span2" placeholder="Buy time"-->
-                          <div class="input-append date" id="dp1" data-date="2013-07-30" data-date-format="yyyy-mm-dd">
+                          <div class="input-append date" id="dp3" data-date="2013-07-30" data-date-format="yyyy-mm-dd">
                             <input type="text"  name="buytime"  class="span2" value="2013-07-30" readonly>
                             <span class="add-on"><i class="icon-th"></i></span>
                        </div>
@@ -371,7 +415,7 @@ $(document).ready(function(){
                     <div class="control-group">
                         <label class="control-label">质保时间</label>
                         <div class="controls">
-                          <div class="input-append date" id="dp2" data-date="2013-07-30" data-date-format="yyyy-mm-dd">
+                          <div class="input-append date" id="dp4" data-date="2013-07-30" data-date-format="yyyy-mm-dd">
                              <!--input type="text"  name="qualitytime" class="span2" placeholder="Quality time" value="12-02-2012"-->
                              <input type="text"  name="qualitytime" class="span2" value="2013-07-30" readonly>
                              <span class="add-on"><i class="icon-th"></i></span>
@@ -510,6 +554,27 @@ $('#dp2').datepicker({"changeDate": function(date){
 );
 </script>
 
+<script type="text/javascript">
+$('#dp3').datepicker({"onRender": function(date){
+    var current = new Date();
+        if(date.valueOf() <= current){
+           return "disabled";
+        }
+    return "";
+   }}
+);
+</script>
+
+<script type="text/javascript">
+$('#dp4').datepicker({"onRender": function(date){
+    var current = new Date();
+        if(date.valueOf() <= current){
+           return "disabled";
+        }
+    return "";
+   }}
+);
+</script>
   </body>
 </html>
 
