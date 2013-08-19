@@ -1,10 +1,14 @@
 1.需要安装软件包
-Django14 MySQL-python
-shell#bash install.sh  #可以用此脚本安装django环境
-shell#rpm -ivh rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-shell#yum install -y Django14
-或者是采用easy_install安装django
-shell#easy_install django==1.4.5
+    Django14 MySQL-python
+ 1.1安装django   
+    shell#bash install.sh  #可以用此脚本安装django环境
+    shell#rpm -ivh rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    shell#yum install -y Django14
+    或者是采用easy_install安装django
+    shell#easy_install django==1.4.5
+
+ 1.2 安装 MySQL-python
+    shell#yum install -y MySQL-python
 2.mysql的配置
 #创建mysql数据库
 mysql>create database opsadmin character set utf8;
