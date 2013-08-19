@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Opsadmin system</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <!--link href="/static/css/bootstrap.min.css" rel="stylesheet"-->
+    <style type="text/css">
+      body {
+        padding-top: 45px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <!--link href="/static/css/bootstrap.css" rel="stylesheet" /-->
+    <!--link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet"-->
+    <!--link href="/static/css/stilearn.css" rel="stylesheet" /-->
+    <!--link href="/static/css/stilearn-responsive.css" rel="stylesheet" /-->
+    <!--link href="/static/css/stilearn-helper.css" rel="stylesheet" /-->
+    <!--link href="/static/css/stilearn-icon.css" rel="stylesheet" /-->
+    <!--link href="/static/css/animate.css" rel="stylesheet" />
+    <!--link href="/static/css/uniform.default.css" rel="stylesheet" />--
+    <!--link href="/static/css/jquery.pnotify.default.css" rel="stylesheet" /-->
+    <!--link href="/static/css/responsive-tables.css" rel="stylesheet" /-->
+    <!--link href="/static/css/font-awesome.css" rel="stylesheet" />--
+    <!--link href="/static/css/picons-oxygen.css" rel="stylesheet" /-->
+
+<!--test-theme-->
+        <!-- google font -->
+        <link href="http://fonts.googleapis.com/css?family=Aclonica:regular" rel="stylesheet" type="text/css" />
+
+        <!-- styles -->
+        <link href="/static/css/stilearn.css" rel="stylesheet" />
+        <link href="/static/css/stilearn-responsive.css" rel="stylesheet" />
+        <link href="/static/css/stilearn-helper.css" rel="stylesheet" />
+        <link href="/static/css/stilearn-icon.css" rel="stylesheet" />
+        <link href="/static/css/font-awesome.css" rel="stylesheet" />
+        <!--link href="/static/css/animate.css" rel="stylesheet" /-->
+        <!--link href="/static/css/uniform.default.css" rel="stylesheet" /-->
+        
+        <link href="/static/css/datepicker.css" rel="stylesheet" />
+        <link href="/static/css/colorpicker.css" rel="stylesheet" />
+        <link href="/static/css/select2.css" rel="stylesheet" />
+        <!--link href="/static/css/bootstrap-wysihtml5.css" rel="stylesheet" /-->
+        
+        <link href="/static/css/responsive-tables.css" rel="stylesheet" />
+        <link href="/static/css/bootstrap.css" rel="stylesheet" />
+        <link href="/static/css/bootstrap-responsive.css" rel="stylesheet" />
+<!--end-theme-->
+
+        
+ <script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/jquery.js"></script>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="static/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="static/ico/favicon.png">
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#salt_key_get_data1").click(function(){
+  htmlobj=$.ajax({url:"/salt_key/",async:false});
+  $("#myDiv1").html(htmlobj.responseText);
+  });
+
+  $("#saltstack_master_config").click(function(){
+  htmlobj=$.ajax({url:"/saltstack_master_config/",async:false});
+  $("#saltstack_master_config_div").html(htmlobj.responseText);
+  });
+
+  $("#saltstack_master_group").click(function(){
+  $("#saltstack_master_config_div").html("");
+  htmlobj=$.ajax({url:"/saltstack_master_group/",async:false});
+  $("#saltstack_master_config_div").html(htmlobj.responseText);
+  });
+
+  $("#saltstack_top_sls").click(function(){
+  $("#saltstack_master_config_div").html("");
+  htmlobj=$.ajax({url:"/saltstack_top_sls/",async:false});
+  $("#saltstack_master_config_div").html(htmlobj.responseText);
+  });
+
+  /*ssh*/
+  $("#ssh_remote_manager").click(function(){
+  /*$("#ssh_remote_manager_div").html("");*/
+  htmlobj=$.ajax({url:"/ssh_remote_manager/",async:false});
+  $("#ssh_remote_manager_data_div").html(htmlobj.responseText);
+  });
+
+});
+</script>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">opsadmin</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">{{username}}   <a href="/logout/">logout</a></a>
+            </p>
+            <ul class="nav">
+              <li class="active"><a href="/">主页</a></li>
+              <li class=""><a href="/idc-manager">资产管理</a></li>
+              <li class=""><a href="/">服务配置</a></li>
+              <li class=""><a href="/saltstack">Saltstack</a></li>
+              <li class=""><a href="/">Zabbix</a></li>
+              <li class=""><a href="/">Devops</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    
+<!--table-left-->
+<div class="tabbable tabs-left">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#hostinfo" data-toggle="tab">salt命令执行</a></li>
+                <li class=""><a href="#grains" data-toggle="tab">grains获取</a></li>
+                <li class=""><a href="#lB" data-toggle="tab">salt配置管理</a></li>
+                <li class=""><a href="#lC" data-toggle="tab">salt分组管理</a></li>
+                <li class=""><a href="#ssh_remote_manager_div" data-toggle="tab">ssh远程管理</a></li>
+              </ul>
+   <div class="tab-content">
+<!--table-left-->
+      <div class="tab-pane active" id="hostinfo"> 
+         <div class="controls">
+             <form class="form-horizontal"  method="post">{% csrf_token %}      
+               <ul>
+                 <button type="button" class="btn btn-primary" data-loading-text="Loading...">在线主机
+                 </button>
+                 <input id="hostname" type="text"  name="chechk_alive_host_name" class="span2" placeholder="输入主机名"> 
+                 <a href="#CheckAliveHost" class="content-header-action" data-toggle="modal">
+                     <div class="badge-circle grd-green color-white" ><i class="icofont-plus-sign"></i></div>
+                 </a>
+                 <select name="check_alive_host_cmd" class="span2">
+                       <option id="check_alive_host_cmd" value="test.ping">test.ping</option>
+                       <option id="check_alive_host_cmd" value="test.version">test.version</option>
+                 </select>
+                 <!--input type="text"  name="check_alive_host_cmd" class="span2" placeholder="输入命令"--> 
+                 <button  type="submit" class="btn  btn-danger"> 执行
+                 </button>
+               </ul>
+               <ul>
+                 <button type="submit" class="btn btn-primary">实时命令
+                 </button>
+                 <input type="text"  name="cmd_run_command_host" class="span2" placeholder="输入主机名">
+                 <a href="#runCmd" class="content-header-action" data-toggle="modal">
+                 <div class="badge-circle grd-green color-white" ><i class="icofont-plus-sign"></i></div>
+                 </a>
+                 <input type="text"  name="cmd_run_command_cmd" class="span2" placeholder="输入系统命令">
+                 <!--button type="submit" class="btn  btn-danger" -->
+                 <button type="submit" class="btn  btn-danger" > 执行
+                 </button>
+               </ul>
+              </form>
+               <ul>
+                 <button id="salt_key_get_data1" type="button" class="btn btn-primary" data-loading-text="Loading..." >获取salt证书列表
+                 </button>
+               </ul>
+                <div class="alert alert-info">
+                     <button  type="button" class="close" data-dismiss="alert">×</button>
+                     <div id="myDiv1">点击按钮获取salt-key</div>
+                     <div>
+                     {{salt_key|safe}}
+                     </div>
+                </div>
+         </div>
+
+         <!--hostAlive-->
+         <div id="CheckAliveHost" class="modal hide fade">
+            <div class="modal-header">
+               <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                   <h3>CheckAliveHost</h3>
+            </div>
+            <div class="modal-body">
+               <form class="form-horizontal" />
+                  <div class="control-group">
+                    <label for="inputCurrentPassword" class="control-label">Hostname </label>
+                    <div class="controls">
+                      <!--input id="inputCurrentPassword" type="password" placeholder="Username" /-->
+                      <select multiple="multiple">
+                        <option value="1" name='checkgroup' onclick="setValue()">1</option>
+                        <option value="2" name='checkgroup' onclick="setValue()">2</option>
+                        <option value="3" name='checkgroup' onclick="setValue()">3</option>
+                        <option value="4" name='checkgroup' onclick="setValue()">4</option>
+                        <option value="5" name='checkgroup' onclick="setValue()">5</option>
+                      </select>
+                    </div>
+                  </div>
+               </form>
+            </div>
+            <div class="modal-footer"><a href="#" data-dismiss="modal" class="btn">Close</a><a href="#" data-dismiss="modal" class="btn btn-primary">Save Changes</a></div>
+            </div>
+         <!--hostAlive-->
+
+         <!--runCmd-->
+         <div id="runCmd" class="modal hide fade">
+           <div class="modal-header">
+              <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+              <h3>runCmd</h3>
+           </div>
+           <div class="modal-body">
+             <form class="form-horizontal" />
+                <div class="control-group">
+                  <label for="inputEmail" class="control-label">Email </label>
+                    <div class="controls">
+                        <input id="inputEmail" type="text" placeholder="Email" />
+                    </div>
+                  </div>
+                <div class="control-group">
+                  <label for="inputCurrentPassword" class="control-label">Username </label>
+                  <div class="controls">
+                      <input id="inputCurrentPassword" type="password" placeholder="Username" />
+                  </div>
+                </div>
+             </form>
+           </div>
+           <div class="modal-footer"><a href="#" data-dismiss="modal" class="btn">Close</a><a href="#" data-dismiss="modal" class="btn btn-primary">Sa
+ve Changes</a>
+           </div>
+         </div>
+         <!--runCmd-->
+
+         {% if not error %}
+            {% if result_data %}
+                <!--div class="alert alert-success"-->
+                <div class="alert alert-info">
+                     <button type="button" class="close" data-dismiss="alert">×</button>
+                     {{result_data|linebreaks}}
+                </div>
+            {% endif %}
+         {% else %}
+                <div class="alert alert-error">
+                     <button type="button" class="close" data-dismiss="alert">×</button>
+                     {{result_data|linebreaks}}
+                </div>
+         {% endif %}
+    </div><!--tab-pane active-->
+        <!--第二个左标签的开始-->
+        <div class="tab-pane" id="grains">
+             <p>grains</p>
+<!--***************************************************************************************************-->
+                 <div class="box corner-all">
+                    <!--box header-->
+                    <div class="box-header grd-white color-silver-dark corner-top">
+                        <div class="header-control">
+                            <a data-box="collapse"><i class="icofont-caret-down"></i></a>
+                             <a data-box="close">×</a>
+                        </div>
+                        <span>{{id}}</span>
+                    </div><!--/box header-->
+                        <!--box body-->
+                        <!--div class="box-body" style="display: block;"-->
+                        <div class="box-body" style="display: none;">
+                            <div>
+<!--****************************************************************************************************-->
+      <tabset>
+        <tab heading="Info">
+          <div class="span6">
+            <!--table class="table table-striped table-bordered table-hover table-condensed"-->
+            <table class="table table-striped">
+              <tr>
+                <td>id</td>
+                <td>{{id}}</td>
+              </tr> 
+              <tr>
+                <td>host</td>
+                <td>{{host}}</td>
+              </tr> 
+              <tr>
+                <td>domain</td>
+                <td>{{domain}}</td>
+              </tr> 
+              <tr>
+                <td>fqdn</td>
+                <td>{{fqdn}}</td>
+              </tr> 
+              <tr>
+                <td>nodename</td>
+                <td>{{nodename}}</td>
+              </tr> 
+              <tr>
+                <td>id</td>
+                <td>{{id}}</td>
+              </tr>    
+              <tr>
+                <td>server_id</td>
+                <td>{{server_id}}</td>
+              </tr>
+              <tr>
+                <td>master</td>
+                <td>{{master}}</td>
+              </tr> 
+              <tr>
+                <td>ipv4</td>
+                <td>{ipv4}</td>
+              </tr> 
+            </table>
+          </div>
+          <div class="span6">
+            <!--table class="table table-striped table-bordered table-hover table-condensed"-->
+            <table class="table table-striped">
+              <tr>
+                <td>saltversion</td>
+                <td>{{saltversion}}</td>
+              </tr> 
+              <tr>
+                <td>pythonversion</td>
+                <td>{{pythonversion}}</td>
+              </tr> 
+              <tr>
+                <td>shell</td>
+                <td>{{shell}}</td>
+              </tr> 
+              <tr>
+                <td>defaultencoding</td>
+                <td>{{defaultencoding}}</td>
+              </tr> 
+              <tr>
+                <td>defaultlanguage</td>
+                <td>{{defaultlanguage}}</td>
+              </tr> 
+              <tr>
+                <td>os</td>
+                <td>{{os}}</td>
+              </tr> 
+              <tr>
+                <td>os_family</td>
+                <td>{{os_family}}</td>
+              </tr>    
+              <tr>
+                <td>kernel</td>
+                <td>{{kernel}}</td>
+              </tr>
+              <tr>
+                <td>kernelrelease</td>
+                <td>{{kernelrelease}}</td>
+              </tr> 
+            </table>
+          </div>
+          <div class="span6">
+            <!--table class="table table-striped table-bordered table-hover table-condensed"-->
+            <table class="table table-striped">
+              <tr>
+                <td>ps</td>
+                <td>{{ps}}</td>
+              </tr> 
+              <tr>
+                <td>virtual</td>
+                <td>{{virtual}}</td>
+              </tr> 
+              <tr>
+                <td>cpu_model</td>
+                <td>{{cpu_model}}</td>
+              </tr> 
+              <tr>
+                <td>cpuarch</td>
+                <td>{{cpuarch}}</td>
+              </tr> 
+              <tr>
+                <td>num_cpus</td>
+                <td>{{num_cpus}}</td>
+              </tr> 
+              <tr>
+                <td>cpu_flags</td>
+                <td>{{cpu_flags}}</td>
+              </tr>    
+              <tr>
+                <td>num_gpus</td>
+                <td>{{num_gpus}}</td>
+              </tr>
+              <tr>
+                <td>gpus</td>
+                <td>{{gpus}}</td>
+              </tr> 
+              <tr>
+                <td>mem_total</td>
+                <td>{{mem_total}}</td>
+              </tr> 
+            </table>
+          </div>
+        </tab>
+        <tab heading="IP">
+          <div class="span6">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <td>ipv4</td>
+                <td>{ipv4}</td>
+              </tr> 
+            </table>
+          </div>
+          <div class="span6">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              {% for ip in ipv4 %}
+              <tr>
+                <td>ipv4</td>
+                <td>{{ip}}</td>
+              </tr> 
+               {% endfor %}
+            </table>
+          </div>
+        </tab>
+        <tab heading="Path">
+          <div class="span6">
+            <table class="table table-striped table-bordered table-hover table-condensed">
+              <tr>
+                <td>path</td>
+                <td>{{path}}</td>
+              </tr> 
+              <tr>
+                <td>saltpath</td>
+                <td>{{saltpath}}</td>
+              </tr> 
+              <tr>
+                <td>pythonpath</td>
+                <td>
+                  <table class="table table-striped table-bordered table-hover table-condensed">
+                    <tr>
+                      <td>{{pythonpath}}</td>
+                    </tr> 
+                  </table>
+                </td>
+              </tr> 
+              
+            </table>
+            
+          </div>
+        </tab>
+      </tabset>
+<!--***********************************************************************************-->
+                             </div>
+                        </div><!--/box body-->
+                     </div>
+        <!--/div-->
+<!--***********************************************************************************-->
+        </div>
+        <div class="tab-pane" id="lB">
+             <button id="saltstack_master_config" type="button"  class="btn btn-primary">salt_master配置文件
+             </button>
+             <button id="saltstack_master_group"  type="button"  class="btn btn-primary">salt_group配置文件
+             </button>
+             <button id="saltstack_top_sls" type="button"  class="btn btn-primary">salt_top.sls配置文件
+             </button>
+           <div>
+              <textarea id="saltstack_master_config_div" style="background:#CBD8E6;" class="input-block-level" rows="25">
+              </textarea>
+                 <button  type="submit" class="btn  btn-danger pull-right">保存
+                 </button>
+           </div>
+           <div>
+                 <a id="saltstack_master_group_div">
+                 </a>
+           </div>
+           <div>
+              <!--textarea id="saltstack_top_sls_div" style="background:#CBD8E6;" class="input-block-level" rows="35">
+                  {sshd_config|safe}}
+              </textarea-->
+           </div> 
+        </div>
+
+        <!--第三个左标签的开始-->
+        <div class="tab-pane" id="lC">
+                 <div class="box corner-all">
+                    <!--box header-->
+                    <div class="box-header grd-white color-silver-dark corner-top">
+                        <div class="header-control">
+                            <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                             <a data-box="close">×</a>
+                        </div>
+                        <span>Tooltip &amp; Popover</span>
+                    </div><!--/box header-->
+                        <!--box body-->
+                        <div class="box-body" style="display: block;">
+                            <div>
+                                <textarea style="background:#CBD8E6;" class="input-block-level" rows="25">
+                                 {sshd_config}}
+                                </textarea>
+                            </div>
+                             <button  type="submit" class="btn  btn-danger pull-right">保存
+                             </button>
+                        </div><!--/box body-->
+                     </div>
+        </div>
+
+        <!--ssh远程管理-->
+        <div class="tab-pane" id="ssh_remote_manager_div">
+           <form class="form-inline">{% csrf_token %}
+             <select class="span2">
+               <option>a</option>
+               <option>b</option>
+             </select>
+             <input class="span2" name="ssh_cmd"></input>
+             <button id="ssh_remote_manager" type="button"  class="btn btn-primary">ssh远程管理
+             </button>
+           </form> 
+          <div>
+              <textarea id="ssh_remote_manager_data_div" style="background:#CBD8E6;" class="input-block-level" rows="25">
+              </textarea>
+          </div>
+        </div>
+<!--table-left-->
+  </div>
+</div>
+<!--table-left-->
+
+      <footer>
+        <p>&copy; itnihao 2013</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--script src="/static/js/jquery.min.js"></script-->
+    <!--script src="/static/js/bootstrap.min.js"></script-->
+<!--test-->
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/jquery-ui.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+        <script src="/static/js/uniform/jquery.uniform.js"></script>
+        
+        <script src="/static/js/datepicker/bootstrap-datepicker.js"></script>
+        <script src="/static/js/colorpicker/bootstrap-colorpicker.js"></script>
+        <script src="/static/js/select2/select2.js"></script>
+        <!--script src="/static/js/wysihtml5/wysihtml5-0.3.0.js"></script-->
+        <!script src="/static/js/wysihtml5/bootstrap-wysihtml5.js"></script-->
+        <script src="/static/js/validate/jquery.validate.js"></script>
+        <script src="/static/js/validate/jquery.metadata.js"></script>
+        <script src="/static/js/wizard/jquery.ui.widget.js"></script> <!-- this required for jquery.wizard-->
+        <script src="/static/js/wizard/jquery.wizard.js"></script>
+        <script src="/static/js/responsive-tables/responsive-tables.js"></script>
+        
+        <!-- required stilearn template js, for full feature-->
+        <script src="/static/js/holder.js"></script>
+        <script src="/static/js/stilearn-base.js"></script>
+      
+<!--test-->
+  </body>
+</html>
+

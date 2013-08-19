@@ -1,0 +1,122 @@
+ul.pricing-table,
+ul.pricing-table > li,
+ul.pricing-table > li ul,
+ul.pricing-table > li ul li{
+    margin: 0px;
+    list-style: none;
+}
+
+ul.pricing-table {
+    font-size: 12px;
+    line-height: 150%;
+    text-align: center;
+    margin: 100px auto 0 auto;
+}
+ul.pricing-table:after {
+    clear: both;
+}
+/*Only the direct LI child, not the .features li*/
+ul.pricing-table>li {
+    float: left;
+    list-style-type: none;
+    /*For smooth hover effects if .active is replaced by :hover*/
+    
+    -webkit-transition: all 0.4s ease-in-out;
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	-ms-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+ul.pricing-table>li:first-child {
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    border-top-left-radius: 4px;
+    
+     -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    border-bottom-left-radius: 4px;
+}
+ul.pricing-table>li:last-child {
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    border-top-right-radius: 4px;
+    
+    -webkit-border-bottom-right-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.pricing-table>li.active, .pricing-table>li.active .footer {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.5);
+}
+.pricing-table h3 {
+    text-transform: uppercase;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: 1px dashed #FFFFFF;
+    color: #FFF;
+}
+.pricing-table li.grd-white h3{
+    color: #626262;
+    border-bottom: 1px dashed #626262;
+}
+
+.pricing-table .price-body {
+    width: 125px;
+    height: 125px;
+    margin: 0 auto 15px auto;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    display: table;
+}
+.pricing-table .price {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    /*Lets vertically center align the price now*/
+    vertical-align: middle;
+    display: table-cell;
+}
+.pricing-table .price .price-figure {
+    display: block;
+}
+.pricing-table .price .price-term {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.pricing-table .features li {
+    list-style-type: none;
+    padding: 5px 0;
+}
+
+.pricing-table .footer {
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    ul.pricing-table>li:first-child {
+        -webkit-border-top-left-radius: 4px;
+        -moz-border-radius-topleft: 4px;
+        border-top-left-radius: 4px;
+
+        -webkit-border-top-right-radius: 4px;
+        -moz-border-radius-topright: 4px;
+        border-top-right-radius: 4px;
+    }
+    ul.pricing-table>li:last-child {
+        -webkit-border-bottom-left-radius: 4px;
+        -moz-border-radius-bottomleft: 4px;
+        border-bottom-left-radius: 4px;
+
+        -webkit-border-bottom-right-radius: 4px;
+        -moz-border-radius-bottomright: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+}
