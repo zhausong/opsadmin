@@ -3,6 +3,7 @@
 官方网站：http://www.itnihao.com
 预览地址：http://www.itnihao.com/opsadmin/opsadmin-view.html
 说    明：本项目由于处于开发阶段，各项功能逐步完善中。
+开发语言: python,django,html,css,js
 当前版本：0.1
 更新日期：2013-08-27
 
