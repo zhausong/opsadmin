@@ -5,6 +5,8 @@
 说    明：本项目由于处于开发阶段，各项功能逐步完善中。
 当前版本：0.1
 更新日期：2013-08-27
+
+  欢迎大家参与本项目。
 1.需要安装软件包
 Django14 MySQL-python
 shell#bash install.sh
@@ -37,4 +39,3 @@ http://X.X.X.X:8080
     6.1 salt-master需要和django在一台机器 
     6.2 目前salt的grains只用了一台机器node2，没有写成通用的，后面会改为通用的
     6.3 其他未完善的地方还有很多，当前相等于一个模型，大约完成30%功能
-7.项目官方站点为http://www.itnihao.com
