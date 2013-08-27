@@ -39,3 +39,11 @@ http://X.X.X.X:8080
     6.1 salt-master需要和django在一台机器 
     6.2 目前salt的grains只用了一台机器node2，没有写成通用的，后面会改为通用的
     6.3 其他未完善的地方还有很多，当前相等于一个模型，大约完成40%功能
+7.美化后台管理admin
+    #pip install django-admin-bootstrapped
+    #vim settings.py
+    INSTALLED_APPS = (
+        'django_admin_bootstrapped',		<==在'django.contrib.admin'的上面
+        'django.contrib.admin',
+    )
+
