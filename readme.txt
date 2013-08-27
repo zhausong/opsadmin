@@ -1,3 +1,10 @@
+项目介绍:opsadmin运维平台,是一个整合saltstack，zabbix，cobbler，资产管理系统，审计系统于一体的运维管理平台
+         集合各种优秀的运维工具，整合最佳的运维技术，实现自动化运维
+官方网站：http://www.itnihao.com
+预览地址：http://www.itnihao.com/opsadmin/opsadmin-view.html
+说    明：本项目由于处于开发阶段，各项功能逐步完善中。
+当前版本：0.1
+更新日期：2013-08-27
 1.需要安装软件包
 Django14 MySQL-python
 shell#bash install.sh
