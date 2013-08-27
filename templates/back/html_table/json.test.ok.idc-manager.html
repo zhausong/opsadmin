@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://devops.itnihao.com:8000/idc-manager/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Opsadmin system</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+
+<!--jQuery dependencies-->
+    <link rel="stylesheet" href="/static/jquery/jquery-ui.css">
+    <script src="/static/jquery/jquery.min.js"></script>    
+    <script src="/static/jquery/jquery-ui.min.js"></script>
+<!--PQ Grid files-->
+    <link rel="stylesheet" href="/static/paramquery_grid/pqgrid.min.css">
+    <script src="/static/paramquery_grid/pqgrid.min.js"></script>
+<!--PQ Grid Office theme-->
+    <link rel="stylesheet" href="/static/paramquery_grid/themes/Office/pqgrid.css">
+
+
+
+  </head>
+
+  <body style="" ryt13073="1">
+<script>
+    $(function () {
+        var data = {{data|safe}};
+
+        var obj = { width: 1400, height: 900, title: "opsadmin hosts info", flexHeight: true };
+        obj.colModel = [{ title: "hostname", width: 100, dataType: "string", dataIndx: "hostname" },
+                        { title: "ip", width: 100, dataType: "string", dataIndx: "ip" },
+                        { title: "serialnumber", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "sshport", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "status", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "location", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "idcname", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "ostype", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "cpu", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "harddisk", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "memory", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "buytime", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "qualitytime", width: 100, dataType: "string", dataIndx: "serialnumber" },
+                        { title: "detail", width: 100, dataType: "string", dataIndx: "serialnumber",
+                               render: function (ui) {
+                                   var rowData = ui.rowData,
+                                    dataIndx = ui.dataIndx,
+                                    cellData = rowData[dataIndx];
+                                   // profits = cellData.replace(",", ""),
+                                   // revenues = rowData["revenues"].replace(",", "");
+                                   //if (profits/revenues > 0.1) {
+                                   //    return "<span style='color:green;'>" + cellData + "</span>";
+                                   // }
+                                   //else {
+                                   //    return "<span style='color:red;'>" + cellData + "</span>";
+                                   //}
+                               }
+                           }];
+        obj.dataModel = {
+            data: data,
+            location: "local",
+            sorting: "local",
+            paging: "local",
+            curPage: 1,
+            rPP: 25,
+            sortIndx: "hostname",
+            sortDir: "up",
+            rPPOptions: [1, 10, 20, 30, 40, 50, 100, 500, 1000]
+        };
+        var $grid = $("#grid_json").pqGrid(obj);
+    });    
+    </script>
+
+<div id="grid_json" style="margin:auto;"></div>
+
+          
+</body></html>

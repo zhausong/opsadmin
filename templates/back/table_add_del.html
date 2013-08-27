@@ -1,0 +1,121 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
+<html lang="en">
+	<head>
+		
+		<title>ParamQuery Grid CRUD Remote Demo</title>
+                <link rel="stylesheet" href="http://paramquery.com/jquery-ui-1.9.0.custom/development-bundle/themes/base/jquery.ui.all.css"/>
+                <script src="http://paramquery.com/jquery-ui-1.9.0.custom/js/jquery-1.8.2.js" ></script>        
+                <script src="http://paramquery.com/jquery-ui-1.9.0.custom/js/jquery-ui-1.9.0.custom.js" ></script>
+		<style type="text/css">
+			*{
+                        .pq-grid-crud-popup *
+                        {
+                            font-family:Verdana, Geneva, Helvetica, sans-serif;
+                            font-size:11px;        
+                        }
+                        .pq-grid-crud-popup form.pq-grid-crud-form
+                        {
+                            margin-top:10px;
+                        }
+                        .pq-grid-crud-popup form.pq-grid-crud-form input
+                        {
+                            width:300px;
+                            overflow:visible;/*fix for IE*/
+                        }
+                        .pq-grid-crud-popup form.pq-grid-crud-form td.label
+                        {
+                            font-weight:bold;padding-right:5px;
+                        }
+                        div.pq-grid-toolbar-crud-remote
+                        {
+                            text-align:center;
+                        }
+            }
+
+		</style>
+	</head>
+	<body>
+
+<link class="link-override" rel="stylesheet" href="http://paramquery.com/Content/css/themes/Office/pqgrid.css" />
+<script>
+        function refreshGrid() {
+            var active = $("#tabs").tabs("option", "active");
+            //debugger;
+            var $grid;
+            if(isNaN(active)){                
+                $grid=$(".pq-grid");
+            }
+            else{
+                var id = (active == 0) ? "tabs-1" : "ui-tabs-" + active;                            
+                $grid = $(".pq-grid", $("#" + id));
+            }
+            var obj=$grid.data();
+            for(var key in obj){
+                if(key.indexOf("pq")==0){
+                    $grid[key]("refresh");
+                }
+            }                    
+        }
+        window.setTimeout(refreshGrid, 1500);
+        return false;
+    });
+</script>
+               
+            </div>
+			<div style="" class="content_div">
+                    
+    <link href="/google-code-prettify/distrib/google-code-prettify/prettify.css" type="text/css" rel="stylesheet" />   
+    <script src="/google-code-prettify/distrib/google-code-prettify/prettify.js"></script>
+
+
+    
+    <link rel="stylesheet" href="http://paramquery.com/Content/css/pqgrid.min.css" /> 
+    <script src="http://paramquery.com/Content/js/pqgrid.min.js"></script>    
+    <script src="http://paramquery.com/Content/js/pqGridCrud.js"></script>		
+<script>
+    $(function () {
+        var colM = [
+        { title: "Company Name", width: 190, dataIndx: "company" },
+        { title: "Contact Name", width: 160, dataIndx: "contact" },
+        { title: "Contact Title", width: 160, dataIndx: "title" },
+	{ title: "Address", width: "190", dataIndx: "address" }
+	];
+        var dataModel = {
+            location: "remote",
+            sorting: "local",
+            paging: "local",
+            dataType: "JSON",
+            method: "GET",
+            sortIndx: "contact",
+            sortDir: "up",
+            url: "http://devops.orshsoft.com.cn:8090/add_tab", //custom field in dataModel for pqGridCrud
+            getData: function (dataJSON) {
+                var data = dataJSON.data;
+                return { data: dataJSON.data };
+            }
+        }
+        var newObj = {
+            flexHeight: true,
+            flexWidth: true,
+            dataModel: dataModel,
+            bottomVisible: true,
+            colModel: colM,
+            selectionModel: { mode: 'single' },
+            editable: false,
+            scrollModel: { horizontal: false },
+            title: "opsadmin host info",
+            columnBorders: true
+        };
+        var $grid = $("#grid_crud-remote").pqGridCrud(newObj);
+
+    });
+</script>    
+
+
+     <div id="grid_crud-remote" style="margin:auto;"></div>                                                  
+		</div>
+            
+	</body>
+</html>
+

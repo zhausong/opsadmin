@@ -1,0 +1,76 @@
+Version: 1.1.3
+
+1) Improved support for JSON: dataIndx can be int or String
+2) flexWidth fix for IE10
+3) Correction in camelCase cellKeyDown and cellEditKeyDown
+
+Version: 1.1.2
+
+Grouping bug fix.	
+
+Version: 1.1.1
+
+Options: bottomVisible, oddRowsHighlight, roundCorners, rowBorders
+Methods: getEditCell
+Events: cellEditKeyDown, cellKeyDown, rowDblClick
+
+Version: 1.1.0
+
+internationalization and localization
+
+Version: 1.0.9
+
+ThemeRoller ready.
+
+Version: 1.0.8
+
+1) Method: createTable
+2) Events: refresh
+
+Version: 1.0.7
+
+1) Page scroll till bottom.
+2) removal of $.browser
+3) jQuery 1.9 compatibility.
+4) Option: topVisible.
+5) Change adapter namespace to paramquery.
+
+Version: 1.0.6
+
+1) FlexHeight, FlexWidth & ScrollModel > horizontal
+2) Added new scrollbar look.
+
+Version: 1.0.5
+
+Edit field and dataIndx bug fixes
+
+Version: 1.0.4
+
+1) Header background css
+2) Nested colModels for grouped columns.
+3) Name of column > saveCell callback changed to column > getEditCellData 
+4) dataIndx introduced to bind colModel > columns with data columns explicitly.
+5) Events: cellSave, cellClick, cellDblClick, cellSelect, cellUnSelect, rowClick, rowSelect, rowUnSelect
+6) Options: column > dataIndx, column > sortable, customData, editModel, hoverMode, selectionModel
+7) Methods: getColIndxFromDataIndx, getCell, getEditCellData, getRow, isEditableCell, refreshCell, refreshColumn, refreshRow, selection
+8) getSelection method removed.
+
+Version: 1.0.3
+
+1) Added beforeTableView event
+2) Added DataModel > error method
+3) Added classes pq-row-select,pq-cell-select,pq-grid-row, pq-grid-row-hover
+4) Added scrollPace option 
+
+Version: 1.0.2
+
+1) Added render event.
+2) Absolute address with paging made possible with setSelection and getSelection.
+3) Support for adding toolbar.
+
+Version: 1.0.1
+
+1) Added refresh button in pager.
+2) Added public methods: editCell,saveEditCell & quitEditMode.
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+<script src="/static/js/django-ajax.js"></script>
+<script>
+$(document).ready(function(){
+  $("#btn_post").click(function(){
+    var data=("Text: " + $("#saltstack_master_config_div").text());
+    alert(data);
+    $.post("/saltstack_master_config/",
+    {
+         name:"Donald Duck",
+    },
+     function(data,status){
+        alert("数据:" + data + "\n状态:" + status);
+    });
+  });
+});
+</script>
+</head>
+<body>
+
+<button id="saltstack_master_config_div">1向页面发送 HTTP POST 请求，并获得返回的结果</button>
+<!--form method="post">{% csrf_token %}
+<button id="btn2">2向页面发送 HTTP POST 请求，并获得返回的结果</button>
+</form-->
+<button id="btn_post">2向页面发送 HTTP POST 请求，并获得返回的结果</button>
+</body>
+</html>
+

@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>ajax test</title>
+		<script type="text/javascript" src="/static/js/jquery.min.js"></script><!--最好用最新版本的吧-->
+		<script type="text/javascript">
+			$(function(){
+                                //get测试方法
+                                //data："This is an XHR GET request"
+				$("#get").click(function(){
+
+					$.get("/ajax", function(data){
+						alert(data);
+					});
+				});
+                                 //POST测试方法
+                                //data:"This is an XHR POST request"
+				$("#post").click(function(){
+					$.ajax({
+					   type: "POST",
+					   url: "/ajax/", //！！！！一定要加上最后的‘/’！！！！
+					   data: "name=John&location=Boston",
+					   success: function(msg){
+					     alert( "Data Saved: " + msg );
+					   },
+					   error: function(msg){
+					   	alert(msg);
+					   }
+					});
+				});
+
+
+			})
+
+			// 获取令牌
+			function getCookie(name) {
+			    var cookieValue = null;
+			    if (document.cookie && document.cookie != '') {
+			        var cookies = document.cookie.split(';');
+			        for (var i = 0; i < cookies.length; i++) {
+			            var cookie = jQuery.trim(cookies[i]);
+			            // Does this cookie string begin with the name we want?
+			            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+			                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			                break;
+			            }
+			        }
+			    }
+			    return cookieValue;
+			}
+			
+                         //验证方法是否安全
+			function csrfSafeMethod(method) {
+			    // these HTTP methods do not require CSRF protection
+			    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+			}
+                        //设置全局 AJAX 默认选项
+			$.ajaxSetup({
+			    crossDomain: false, 
+			    beforeSend: function(xhr, settings) {
+			        if (!csrfSafeMethod(settings.type)) {
+                                     //获取csrf令牌
+			            var csrftoken = getCookie('csrftoken');
+                                    //将令牌信息加入请求头中，这样就可以通过验证了~~
+			            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+			        }
+			    }
+			});
+		</script>
+	</head>
+	<body>
+		{% csrf_token %}
+		<input type="button" id="get" value="get"/>
+		<input type="button" id="post" value="post"/>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+<script src="/static/js/django-ajax.js"></script>
+</script>
+<script>
+$(document).ready(function(){
+  $("#btn2").click(function(){
+    var data=("Text: " + $("#btn2").text());
+    $.post("/saltstack_master_config/",
+    { 'name': data },
+    function(data,status){
+      alert("数据: " + data + "\n状态: " + status);
+    });
+/*     alert("提交数据");*/
+  });
+});
+</script>
+</head>
+<body>
+
+<button id="btn1">1向页面发送 HTTP POST 请求，并获得返回的结果</button>
+<!--form method="post">{% csrf_token %}
+<button id="btn2">2向页面发送 HTTP POST 请求，并获得返回的结果</button>
+</form-->
+<button id="btn2">2向页面发送 HTTP POST 请求，并获得返回的结果</button>
+</body>
+</html>
+
