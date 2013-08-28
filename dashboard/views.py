@@ -46,32 +46,3 @@ def logout(req):
         return HttpResponseRedirect('/login/')
     else:
         return HttpResponseRedirect('/login/')
-
-
-#def register(req):
-#    context={}
-#    if req.method == "POST":
-#        username=req.POST.get('username')
-#        password=req.POST.get('password')
-#        password_two=req.POST.get('password_two')
-#        print username,password,password_two
-#        user=User.objects.filter(username=username)
-#        if user:
-#            req.session['username']=username
-#            return HttpResponse('用户名已经被占用')
-#        elif password == password_two:
-#            print "----"
-#            user = User()
-#            user.username=username
-#            user.password=password
-#            print "--------"
-#            user.save()
-#            print username,password,password_two
-#            #return HttpResponse(u'恭喜你!注册成功，您的用户名为'+username)
-#            return HttpResponseRedirect('/login/',context_instance=RequestContext(req))
-#        else:
-#            return HttpResponse(u'您两次输入的密码不匹配，请重新输入') 
-#    else:
-#         uf=UserForm()
-#    return render_to_response('register.html',context_instance=RequestContext(req))
-
