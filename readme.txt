@@ -13,6 +13,9 @@ Django14 MySQL-python
 shell#bash install.sh
 shell#rpm -ivh rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 shell#yum install -y salt-master salt-minions salt
+shell#/etc/init.d/salt-master restart
+shell#/etc/init.d/salt-minions restart
+（需配置salt，此处就不说了）
 shell#yum install -y Django14
 shell#easy_install django-admin-bootstrapped(美化django后台){如果没有此命令请安装python-setuptools的rpm包}
 或者是采用easy_install安装django
