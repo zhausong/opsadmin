@@ -34,7 +34,7 @@ class Idcmanager(models.Model):
     detail=models.CharField(max_length=200,null=True)
 
     def __unicode__(self):
-        return self.hostname
+        return self.nodename
 
 class Ostype(models.Model):
     ostype=models.CharField(max_length=30)
