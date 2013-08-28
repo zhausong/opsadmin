@@ -12,7 +12,9 @@
 Django14 MySQL-python
 shell#bash install.sh
 shell#rpm -ivh rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+shell#yum install -y salt-master salt-minions salt
 shell#yum install -y Django14
+shell#easy_install django-admin-bootstrapped(美化django后台)
 或者是采用easy_install安装django
 shell#easy_install django==1.4.5
 2.mysql的配置
