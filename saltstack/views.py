@@ -87,25 +87,7 @@ def saltstack(req):
             error=True
         return render_to_response('saltstack.html',{"ret_msg":ret_msg,"error":error,"ret_err":ret_err,'ret_bad':ret_bad,'ret_nocmd':ret_nocmd,'ret_badcmd':ret_badcmd},context_instance=RequestContext(req))
 
-        #if alivenode  != "" and alivecmd != "":
-        #    node=alivenode
-        #    cmd=alivecmd
-        #    allow_cmd=['test.ping','test.version']
-        #    if cmd in allow_cmd:
-        #        try:
-        #            ret=salt.client.LocalClient().cmd_full_return(node,cmd)
-        #            ret=str(node)+" "*24+str(ret[node]['ret'])
-        #        except:
-        #            ret=str(node)+" "*24+"False"
-        #            error=True
-        #    elif node == "" or cmd == "" :
-        #        ret="input is can't null"
-        #        error=True
-        #    else:
-        #        ret="The command is not allowed to use"
-        #        error=True
-        #    return render_to_response('saltstack.html',{"result_data":ret,"error":error},context_instance=RequestContext(req)) 
-    #print ret
+
     elif req.method == "GET":
         print req.META['REMOTE_ADDR'],req.META['HTTP_USER_AGENT']
 
@@ -145,10 +127,11 @@ def saltstack(req):
         saltpath=grains_info['saltpath']
         pythonpath=grains_info['pythonpath']
         ###############################grains info####################################
-        ###################################sshd_config################################
+        ###################################master_config################################
         f=open('/etc/salt/master','r')
         sshd_config=f.read()
-        ###################################sshd_config################################
+        f.close()
+        ##################################master_config################################
         ret = ""
         return render_to_response('saltstack.html',{"username":username,"sshd_config":sshd_config,"result_data":ret,"error":error,"path":path,"id":id,"host":host,"domain":domain,"fqdn":fqdn,"nodename":nodename,"localhost":localhost,"server_id":server_id,"master":master,"ipv4":ipv4,"saltversion":saltversion,"pythonversion":pythonversion,"shell":shell,"defaultencoding":defaultencoding,"defaultlanguage":defaultlanguage,"os":os,"os_family":os_family,"kernel":kernel,"kernelrelease":kernelrelease,"ps":ps,"virtual":virtual,"cpu_model":cpu_model,"cpuarch":cpuarch,"num_cpus":num_cpus,"cpu_flags":cpu_flags,"num_gpus":num_gpus,"gpus":gpus,"mem_total":mem_total,"ipv4":ipv4,"path":path,"saltpath":saltpath,"pythonpath":pythonpath},context_instance=RequestContext(req))
     return render_to_response('saltstack.html',{"result_data":ret,"error":error},context_instance=RequestContext(req))
@@ -156,28 +139,7 @@ def minions(req):
     if not req.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     return render_to_response('minion.html',context_instance=RequestContext(req))
-#def saltstack_alive_host(req):
-#    error = False
-#    if req.method == "POST":
-#        node=req.POST.get('chechk_alive_host_name')
-#        cmd=req.POST.get('check_alive_host_cmd')  
-#        allow_cmd=['test.ping']
-#        if cmd in allow_cmd:
-#            try:
-#                ret=salt.client.LocalClient().cmd_full_return(node,'test.ping')
-#                ret=str(node)+" "*24+str(ret[node]['ret'])
-#            except:
-#                ret=str(node)+" "*24+"False"
-#                error=True
-#        elif node == "" or cmd == "" :
-#            ret="input is can't null"
-#            error=True
-#        else:
-#            ret="The command is not allowed to use"
-#            error=True
-#    elif req.method == "GET":
-#        ret = ""
-#    return render_to_response('saltstack.html',{"result_data":ret,"error":error},context_instance=RequestContext(req))
+
 def salt_key(req):
     if not req.user.is_authenticated():
         return HttpResponseRedirect('/login/')
@@ -306,20 +268,6 @@ def ssh_remote_manager(req):
         cmd_result = stdout.read(),stderr.read()
     return HttpResponse(cmd_result) #context_instance=RequestContext(req))
 
-
-#from django.views.decorators.csrf import csrf_exempt
-#@csrf_exempt ： 设置该方法忽略CSRF验证
-def ajax_test(request):
-    if request.is_ajax():
-        if request.method == 'GET':
-            message = "This is an XHR GET request"
-        elif request.method == 'POST':
-            message = "This is an XHR POST request"
-            # Here we can access the POST data
-            print request.POST
-    else:
-        message = "No XHR"
-    return HttpResponse(message)
 
 @csrf_protect
 @csrf_exempt
