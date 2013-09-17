@@ -92,9 +92,10 @@ $(document).ready(function(){
 $(document).ready(function(){
  $("#add_location_post_save").click(function(){
      /*var nametext=($("#add_location_name").val());*/
-     var s1=$("add_location_name_s1").find("option:selected").text();
-     var s2=($("add_location_name_s2").text());
-     var s3=($("add_location_name_s3").val());
+     var s1=$("#add_location_name_s1").find("option:selected").text();
+     var s2=$("#add_location_name_s2 option:selected").text();
+     var s3=$("#add_location_name_s3 option:selected").text();
+     
      var nametext=s1+','+s2+','+s3;
      var detailtext=($("#add_location_detail").val());
      $.post("/add_location_name/",
