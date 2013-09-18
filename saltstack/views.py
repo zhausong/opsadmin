@@ -17,6 +17,7 @@ def saltstack(req):
     #ret=subprocess.Popen('salt "node2" test.ping',shell=True,stdout=subprocess.PIPE).stdout.read()
     error = False
     ret_msg=[]
+    ret_cmd_msg=[]
     ret_err=[]
     ret_nohost=''
     ret_nocmd=''
@@ -64,7 +65,8 @@ def saltstack(req):
                             err=str(node)+" "*24+'minions is not running'
                             ret_err.append(err)
                             print ret_err
-                        ret=str(node)+" "*24+str(ret[node])
+                        #ret=str(node)+" "*24+str(ret[node])
+                        ret_cmd_msg=str(node)+":\n"+"="*24+"\n"+str(ret[node])
                         print node,ret[node]
                         print ret
                         print "err============================="
@@ -85,7 +87,7 @@ def saltstack(req):
         elif cmd  in bad_cmd:
             ret_bad="the command is not allow to use"
             error=True
-        return render_to_response('saltstack.html',{"ret_msg":ret_msg,"error":error,"ret_err":ret_err,'ret_bad':ret_bad,'ret_nocmd':ret_nocmd,'ret_badcmd':ret_badcmd},context_instance=RequestContext(req))
+        return render_to_response('saltstack.html',{"ret_msg":ret_msg,"ret_cmd_msg":ret_cmd_msg,"error":error,"ret_err":ret_err,'ret_bad':ret_bad,'ret_nocmd':ret_nocmd,'ret_badcmd':ret_badcmd},context_instance=RequestContext(req))
 
 
     elif req.method == "GET":
