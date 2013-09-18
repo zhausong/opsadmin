@@ -406,6 +406,14 @@ ve Changes</a>
                      {{ret_err|linebreaks}}
                 </div>
                 {%endfor%}
+                
+            
+            {% elif ret_cmd_msg %}
+                <div class="alert alert-info">
+                     <button type="button" class="close" data-dismiss="alert">×</button>
+                     {{ret_cmd_msg|linebreaks}}
+                </div>
+                
             {%elif ret_msg%}
                 {% for ret_msg in ret_msg %}
                 <div class="alert alert-info">
