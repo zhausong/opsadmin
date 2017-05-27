@@ -157,7 +157,8 @@ def add_tab(req):
     if not req.user.is_authenticated():
         return HttpResponseRedirect('/login/')
     import json
-    f=open('/home/zswu/python/django/opsadmin/static/getCustomers','r')
+    #f=open('/home/zswu/python/django/opsadmin/static/getCustomers','r')
+    f=open('static/getCustomers','r')
     data=f.read()
     #data=json.dumps(f1).replace('\\','')
     return HttpResponse(data)
